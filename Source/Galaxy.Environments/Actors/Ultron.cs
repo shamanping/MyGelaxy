@@ -36,6 +36,15 @@ namespace Galaxy.Environments.Actors
     }
 
     #endregion
+    public EnemyBullet NewEnemyBullet(Ultron ultron)
+    {
+        EnemyBullet bullet = new EnemyBullet(Info);
+        int positionY = ultron.Position.Y + 30;
+        int positionX = ultron.Position.X + 15;
+        bullet.Position = new Point(positionX, positionY);
+        bullet.Load();
+        return bullet;
+    }
 
     }
 }

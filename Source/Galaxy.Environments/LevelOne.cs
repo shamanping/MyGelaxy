@@ -1,6 +1,8 @@
+//<<<<<<< HEAD
 ﻿#region using
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using Galaxy.Core.Actors;
@@ -26,6 +28,9 @@ namespace Galaxy.Environments
     /// </summary>
     public LevelOne()
     {
+        //stopwatch
+        m_stopwatch = new Stopwatch();
+        m_stopwatch.Start();
       // Backgrounds
       FileName = @"Assets\LevelOne.png";
 
@@ -41,6 +46,8 @@ namespace Galaxy.Environments
         Actors.Add(ship);
       }
 
+//=======
+//>>>>>>> parent of f10ca14... Revert "Создание нового класса врагов "Ultron" и добавление его на уровень"
       //Ultron
       for (int i = 0; i < 1; i++)
       {
@@ -52,6 +59,7 @@ namespace Galaxy.Environments
 
           Actors.Add(ultron);
       }
+//<<<<<<< HEAD
 
       // Player
       Player = new PlayerShip(this);
@@ -85,10 +93,13 @@ namespace Galaxy.Environments
       return new StartScreen();
     }
 
+    private Stopwatch m_stopwatch;
+
     public override void Update()
     {
       m_frameCount++;
       h_dispatchKey();
+      AddActor();
 
       base.Update();
 
@@ -118,5 +129,22 @@ namespace Galaxy.Environments
     }
 
     #endregion
+
+      private void AddActor()
+      {
+          Ultron[] ultron = Actors.Where(actor => actor is Ultron).Cast<Ultron>().ToArray();
+          // Trace.WriteLine(m_stopwatch.ElapsedMilliseconds);
+          if (m_stopwatch.ElapsedMilliseconds > 300)
+          {
+              foreach (var ship in ultron)
+              {
+                  Actors.Add(ship.NewEnemyBullet(ship));
+                  m_stopwatch.Restart();
+              }
+
+          }
+      }
   }
 }
+//=======
+//>>>>>>> parent of f10ca14... Revert "Создание нового класса врагов "Ultron" и добавление его на уровень"
