@@ -43,6 +43,8 @@ namespace Galaxy.Environments
 
         ship.Position = new Point(positionX, positionY);
 
+        ship.Check = i%2 == 0;
+
         Actors.Add(ship);
       }
 

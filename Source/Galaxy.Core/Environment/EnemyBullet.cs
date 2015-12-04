@@ -20,8 +20,8 @@ namespace Galaxy.Core.Environment
         public EnemyBullet(ILevelInfo info)
             : base(info)
         {
-            Width = 3;
-            Height = 3;
+            Width = 5;
+            Height = 8;
             ActorType = ActorType.Enemy;
         }
 
