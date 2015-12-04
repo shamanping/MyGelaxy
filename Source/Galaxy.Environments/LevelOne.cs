@@ -38,7 +38,7 @@ namespace Galaxy.Environments
       for (int i = 0; i < 5; i++)
       {
         var ship = new Ship(this);
-        int positionY = ship.Height + 10;
+        int positionY = ship.Height + 50;
         int positionX = 150 + i * (ship.Width + 50);
 
         ship.Position = new Point(positionX, positionY);
@@ -60,6 +60,18 @@ namespace Galaxy.Environments
           ultron.Position = new Point(positionX, positionY);
 
           Actors.Add(ultron);
+      }
+
+      //Saboteur
+      for (int i = 0; i < 1; i++)
+      {
+          var thunderbolt = new Thunderbolt(this);
+          int positionY = thunderbolt.Height + 10;
+          int positionX = 150 + i * (thunderbolt.Width + 50);
+
+          thunderbolt.Position = new Point(positionX, positionY);
+
+          Actors.Add(thunderbolt);
       }
 //<<<<<<< HEAD
 
