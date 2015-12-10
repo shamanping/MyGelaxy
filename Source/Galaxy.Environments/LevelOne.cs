@@ -50,29 +50,21 @@ namespace Galaxy.Environments
 
 //=======
 //>>>>>>> parent of f10ca14... Revert "Создание нового класса врагов "Ultron" и добавление его на уровень"
+     
       //Ultron
-      for (int i = 0; i < 1; i++)
-      {
-          var ultron = new Ultron(this);
-          int positionY = ultron.Height + 90;
-          int positionX = 300 + i * (ultron.Width + 50);
-
-          ultron.Position = new Point(positionX, positionY);
-
-          Actors.Add(ultron);
-      }
+        var ultron = new Ultron(this);
+        int ultronpositionY = ultron.Height + 90;
+        int ultronpositionX = ultron.Width + 270;
+        ultron.Position = new Point(ultronpositionX, ultronpositionY);
+        Actors.Add(ultron);
 
       //Saboteur
-      for (int i = 0; i < 1; i++)
-      {
-          var thunderbolt = new Thunderbolt(this);
-          int positionY = thunderbolt.Height + 10;
-          int positionX = 150 + i * (thunderbolt.Width + 50);
+      var thunderbolt = new Thunderbolt(this);
+      int saboteurpositionY = Size.Height + 20;
+      int saboteurpositionX = Size.Width;
+      thunderbolt.Position = new Point(saboteurpositionX, saboteurpositionY);
+      Actors.Add(thunderbolt);
 
-          thunderbolt.Position = new Point(positionX, positionY);
-
-          Actors.Add(thunderbolt);
-      }
 //<<<<<<< HEAD
 
       // Player
@@ -109,7 +101,7 @@ namespace Galaxy.Environments
         {
             foreach (var ship in ultron)
             {
-                Actors.Add(ship.NewEnemyBullet(ship));
+                Actors.Add(ship.NewEnemyBullet());
                 m_stopwatch.Restart();
             }
 
