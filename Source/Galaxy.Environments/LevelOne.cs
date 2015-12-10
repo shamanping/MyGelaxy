@@ -102,6 +102,28 @@ namespace Galaxy.Environments
       Actors.Add(bullet);
     }
 
+    private void AddActor()
+    {
+        Ultron[] ultron = Actors.Where(actor => actor is Ultron).Cast<Ultron>().ToArray();
+        if (m_stopwatch.ElapsedMilliseconds > 300)
+        {
+            foreach (var ship in ultron)
+            {
+                Actors.Add(ship.NewEnemyBullet(ship));
+                m_stopwatch.Restart();
+            }
+
+        }
+        EnemyBullet[] bullets = Actors.Where(actor => actor is EnemyBullet).Cast<EnemyBullet>().ToArray();
+        foreach (var s in bullets)
+        {
+            if (s.Position.Y >= BaseLevel.DefaultHeight)
+            {
+                Actors.Remove(s);
+            }
+        }
+    }
+
     public override BaseLevel NextLevel()
     {
       return new StartScreen();
@@ -144,20 +166,7 @@ namespace Galaxy.Environments
 
     #endregion
 
-      private void AddActor()
-      {
-          Ultron[] ultron = Actors.Where(actor => actor is Ultron).Cast<Ultron>().ToArray();
-          // Trace.WriteLine(m_stopwatch.ElapsedMilliseconds);
-          if (m_stopwatch.ElapsedMilliseconds > 300)
-          {
-              foreach (var ship in ultron)
-              {
-                  Actors.Add(ship.NewEnemyBullet(ship));
-                  m_stopwatch.Restart();
-              }
-
-          }
-      }
+      
   }
 }
 //=======
